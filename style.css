@@ -1,0 +1,1228 @@
+/* Fonts - Quicksand for clean UI, Fredoka for bubbly titles, Caveat for diary handwriting */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Fredoka:wght@300..700&family=Quicksand:wght@400..700&display=swap');
+
+/* Color Variables */
+:root {
+  /* Day Mode - Warm Cozy Wood & Earth Palette */
+  --bg-app-day: #f4eae1;       /* Warm oatmeal */
+  --bg-room-day: #ebdcc9;      /* Warm cedar wood wall */
+  --panel-bg-day: rgba(253, 250, 245, 0.85); /* Warm cream panel */
+  --text-primary-day: #4e3629;  /* Dark cocoa brown */
+  --text-secondary-day: #80604f; /* Medium honey brown */
+  --accent-day: #e07a5f;       /* Rich peach/terracotta */
+  --accent-hover-day: #d36a50; /* Slightly deeper terracotta */
+  --border-day: #dccbba;       /* Warm beige wood joint */
+  --sky-day-gradient: linear-gradient(to bottom, #ffccd5, #fff0e6, #fffbf0);
+  --sun-glow: rgba(255, 235, 150, 0.45);
+
+  /* Night Mode */
+  --bg-app-night: #121422;
+  --bg-room-night: #191c32;
+  --panel-bg-night: rgba(26, 29, 50, 0.78);
+  --text-primary-night: #e8eaff;
+  --text-secondary-night: #9fa4cf;
+  --accent-night: #ffb885;
+  --accent-hover-night: #ffa261;
+  --border-night: #2b2f4c;
+  --sky-night-gradient: linear-gradient(to bottom, #0e1026, #1d2047, #352f64);
+  --moon-glow: rgba(255, 255, 230, 0.25);
+
+  /* Cozy General Palettes */
+  --coral: #ff7a7a;
+  --sage: #a8d5ba;
+  --honey: #ffd166;
+  --sky: #83c5be;
+  --lavender: #c8b6ff;
+  --mint: #bbf2d6;
+
+  /* Active state placeholders */
+  --bg-app: var(--bg-app-day);
+  --bg-room: var(--bg-room-day);
+  --panel-bg: var(--panel-bg-day);
+  --text-primary: var(--text-primary-day);
+  --text-secondary: var(--text-secondary-day);
+  --accent: var(--accent-day);
+  --accent-hover: var(--accent-hover-day);
+  --border: var(--border-day);
+  --shadow: rgba(92, 74, 62, 0.06);
+  --shadow-hover: rgba(92, 74, 62, 0.12);
+  --glass-blur: blur(16px);
+
+  /* Animation timing */
+  --transition-speed: 0.8s; /* Smooth slow transition */
+}
+
+/* Dark Mode Overrides */
+.night-mode {
+  --bg-app: var(--bg-app-night);
+  --bg-room: var(--bg-room-night);
+  --panel-bg: var(--panel-bg-night);
+  --text-primary: var(--text-primary-night);
+  --text-secondary: var(--text-secondary-night);
+  --accent: var(--accent-night);
+  --accent-hover: var(--accent-hover-night);
+  --border: var(--border-night);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 0, 0, 0.4);
+}
+
+/* Reset and Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .cozy-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+}
+
+button {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* App Layout */
+.app-container {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Top Header Bar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px var(--shadow);
+  transition: all var(--transition-speed) ease;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+.logo h1 {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-btn {
+  background: var(--panel-bg);
+  border: 1.5px solid var(--border);
+  color: var(--text-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px var(--shadow);
+}
+
+.control-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.control-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Main Content Workspace */
+.main-content {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 25px;
+  flex-grow: 1;
+  align-items: stretch;
+}
+
+@media (max-width: 950px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Panel: Cozy Room Visualizer */
+.room-panel {
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1.5px solid var(--border);
+  border-radius: 32px;
+  padding: 20px;
+  box-shadow: 0 10px 40px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-speed) ease;
+  min-height: 480px;
+}
+
+.room-wrapper {
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+
+/* Room SVG Styles & Interactions */
+#room-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* SVG interactive cursors & highlights */
+.interactive {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.interactive:hover {
+  filter: brightness(1.15) drop-shadow(0px 0px 8px rgba(255, 210, 120, 0.7));
+}
+
+.night-mode .interactive:hover {
+  filter: brightness(1.25) drop-shadow(0px 0px 10px rgba(255, 255, 200, 0.85));
+}
+
+/* Room Day/Night Theme transitions for SVGs */
+.room-wall {
+  fill: #ebdcc9; /* Default wood wall */
+  transition: fill var(--transition-speed) ease;
+}
+.room-floor {
+  fill: #e0b48a; /* Default floor */
+  transition: fill var(--transition-speed) ease;
+}
+.baseboard {
+  fill: #c68e64; /* Default baseboard */
+  transition: fill var(--transition-speed) ease;
+}
+
+/* Time based wall and floor lighting overrides */
+.time-morning .room-wall { fill: #fde8d4; }
+.time-afternoon .room-wall { fill: #ebdcc9; }
+.time-evening .room-wall { fill: #d3a385; }
+.time-night .room-wall { fill: #191c32; }
+
+.time-morning .room-floor { fill: #e5bfa1; }
+.time-afternoon .room-floor { fill: #e0b48a; }
+.time-evening .room-floor { fill: #c58b5e; }
+.time-night .room-floor { fill: #382c44; }
+
+.time-morning .baseboard { fill: #cf9b75; }
+.time-afternoon .baseboard { fill: #c68e64; }
+.time-evening .baseboard { fill: #aa6e45; }
+.time-night .baseboard { fill: #281e33; }
+
+/* In manual override night-mode, fall back to night colors */
+.night-mode .room-wall { fill: #191c32; }
+.night-mode .room-floor { fill: #382c44; }
+.night-mode .baseboard { fill: #281e33; }
+
+/* Lamp lighting cone */
+.lamp-glow {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) ease;
+}
+.time-night .lamp-glow, .night-mode .lamp-glow { opacity: 0.55; }
+.time-evening .lamp-glow { opacity: 0.25; }
+
+/* Ceiling hanging lamp light cone */
+.ceiling-lamp-glow {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) ease;
+}
+.time-night .ceiling-lamp-glow, .night-mode .ceiling-lamp-glow { opacity: 0.6; }
+.time-evening .ceiling-lamp-glow { opacity: 0.3; }
+
+.lamp-bulb {
+  fill: #ddd;
+  transition: fill var(--transition-speed) ease;
+}
+.time-night .lamp-bulb, .night-mode .lamp-bulb { fill: #ffeb3b; }
+.time-evening .lamp-bulb { fill: #ffd166; }
+
+/* Window sky and moon/sun */
+.window-sky {
+  fill: url(#sky-afternoon);
+  transition: fill var(--transition-speed) ease;
+}
+
+/* Window Sky and Objects visibility controls */
+.window-sunrise, .window-sun, .cloud-drift, .window-sunset, .window-moon, .window-stars {
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+/* Morning */
+.time-morning .window-sunrise { opacity: 1; }
+.time-morning .cloud-drift { opacity: 0.7; }
+.time-morning .window-sky { fill: url(#sky-morning); }
+
+/* Afternoon */
+.time-afternoon .window-sun { opacity: 1; }
+.time-afternoon .cloud-drift { opacity: 1; }
+.time-afternoon .window-sky { fill: url(#sky-afternoon); }
+
+/* Evening */
+.time-evening .window-sunset { opacity: 1; }
+.time-evening .window-sky { fill: url(#sky-evening); }
+
+/* Night */
+.time-night .window-moon, .time-night .window-stars { opacity: 1; }
+.time-night .window-sky { fill: url(#sky-night); }
+
+/* If manual night mode is active, override sky to night view */
+.night-mode .window-moon, .night-mode .window-stars { opacity: 1; }
+.night-mode .window-sky { fill: url(#sky-night); }
+.night-mode .window-sunrise, .night-mode .window-sun, .night-mode .window-sunset, .night-mode .cloud-drift { opacity: 0; }
+
+/* Appearance Pop Animation */
+.item-pop {
+  animation: itemPopAnimation 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+}
+
+@keyframes itemPopAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  50% {
+    transform: scale(1.15) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Shelf Collectibles Active Glowing & Hover details */
+#room-shelf .shelf-token.item-active {
+  filter: drop-shadow(0px 0px 3px rgba(255, 209, 102, 0.8));
+  animation: shelfItemGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes shelfItemGlow {
+  0% {
+    filter: drop-shadow(0px 0px 2px rgba(255, 209, 102, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0px 0px 6px rgba(255, 209, 102, 1));
+  }
+}
+
+/* Toast Notification Alert */
+.memory-toast {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background: var(--text-primary-day); /* Warm cocoa brown */
+  color: #fdfbf7;
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.memory-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Language Toggle Button styling */
+.lang-btn {
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+  border-radius: 14px !important;
+  width: auto !important;
+  height: 42px !important;
+  padding: 0 14px !important;
+  letter-spacing: 0.5px;
+}
+
+/* Fridge Open/Close Logic (Separate SVG elements toggle) */
+.fridge-interior {
+  display: none;
+}
+#fridge-door-opened {
+  display: none;
+}
+#fridge-door-closed {
+  display: block;
+}
+
+.fridge-open .fridge-interior {
+  display: block;
+}
+.fridge-open #fridge-door-opened {
+  display: block;
+}
+.fridge-open #fridge-door-closed {
+  display: none;
+}
+
+/* Item State Controls (visibility in SVGs) */
+.room-item {
+  opacity: 0;
+  transform: scale(0.8) translateY(12px);
+  transform-origin: center;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+/* When the item is active, make it visible and interactive */
+.room-item.item-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* Interactive Cat Speech Bubble Overlay */
+.cat-bubble {
+  position: absolute;
+  bottom: 125px;
+  left: 260px;
+  background: #fffcf2;
+  border: 2.5px solid #eadecc;
+  color: #5c4a3e;
+  border-radius: 18px;
+  padding: 10px 16px;
+  box-shadow: 0 6px 20px rgba(92, 74, 62, 0.12);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 80;
+}
+
+.cat-bubble.show-bubble {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+
+.cat-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 30px;
+  width: 12px;
+  height: 12px;
+  background: #fffcf2;
+  border-right: 2.5px solid #eadecc;
+  border-bottom: 2.5px solid #eadecc;
+  transform: rotate(45deg);
+}
+
+/* Right Panel: Controls and Journal Scrapbook */
+.sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Bouncy Cozy Button */
+.btn-action-primary {
+  width: 100%;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, var(--accent), #ff9a8b);
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(255, 139, 123, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-action-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 139, 123, 0.48);
+  background: linear-gradient(135deg, var(--accent-hover), #ff8b7b);
+}
+
+.btn-action-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(255, 139, 123, 0.3);
+}
+
+/* Scrapbook panel */
+.scrapbook-panel {
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 25px;
+  box-shadow: 0 10px 40px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  max-height: 520px;
+  transition: all var(--transition-speed) ease;
+}
+
+.scrapbook-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.scrapbook-header h2 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.scrapbook-count {
+  background: var(--border);
+  color: var(--text-secondary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all var(--transition-speed) ease;
+}
+
+.scrapbook-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 5px;
+  flex-grow: 1;
+}
+
+.scrapbook-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 40px 20px;
+  gap: 15px;
+  margin: auto 0;
+}
+
+.scrapbook-empty-icon {
+  font-size: 3rem;
+  opacity: 0.55;
+  animation: slow-breath 4s ease-in-out infinite;
+}
+
+/* Polaroid Memory Card (Handwritten Journal styling) */
+.polaroid-card {
+  background: #fffefb;
+  color: #4a3b32;
+  padding: 16px;
+  padding-bottom: 24px;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(92, 74, 62, 0.08);
+  border: 1px solid #efe4d3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  transform: rotate(var(--rotation, 0deg));
+  cursor: pointer;
+}
+
+.polaroid-card:hover {
+  transform: scale(1.025) translateY(-5px) rotate(0deg) !important;
+  box-shadow: 0 12px 28px rgba(92, 74, 62, 0.15);
+  z-index: 5;
+}
+
+.polaroid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.polaroid-date {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9c8473;
+}
+
+.btn-delete {
+  background: transparent;
+  color: #c97d7d;
+  font-size: 1rem;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+  background: #fff0f0;
+  transform: scale(1.1);
+}
+
+.polaroid-body {
+  display: flex;
+  gap: 14px;
+}
+
+.polaroid-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: #fdfcf7;
+  border: 1px solid #efe5d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.polaroid-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.polaroid-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #5c4a3e;
+  line-height: 1.3;
+}
+
+.polaroid-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  color: #6d5445;
+  line-height: 1.25;
+  margin: 2px 0;
+}
+
+.polaroid-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tag-pill {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  background: #fdf5ea;
+  color: #a08471;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* ================= MODALS & DIALOGS (SKETCHBOOK / DIARY LOOK) ================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #fdfbf7; /* Warm papery color always */
+  border: 2px solid #e0d0ba;
+  color: #5c4a3e;
+  width: 90%;
+  max-width: 530px;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(92, 74, 62, 0.22);
+  overflow: visible; /* Show binder spirals overflowing top */
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.9) translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  border-left: 6px solid #ffccd5; /* Notebook pink margin binder edge */
+}
+
+/* Notebook binder spirals */
+.notebook-spiral {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: -14px;
+  left: 10%;
+  width: 80%;
+  z-index: 110;
+}
+
+.notebook-spiral span {
+  width: 12px;
+  height: 26px;
+  background: linear-gradient(135deg, #eee, #c5c5c5);
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.night-mode .modal-card {
+  /* Keep modal warm and diary-like but slightly adapted */
+  background: #fcf9f2;
+  border-color: #dcd0bc;
+}
+
+.modal-overlay.show .modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  padding: 22px 25px 15px;
+  border-bottom: 1.5px dashed #efe4d3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 1.35rem;
+}
+
+.btn-close-modal {
+  background: transparent;
+  font-size: 1.4rem;
+  color: var(--text-secondary-day);
+}
+
+.btn-close-modal:hover {
+  transform: scale(1.15);
+  color: var(--accent-day);
+}
+
+.modal-body {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.modal-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary-day);
+  line-height: 1.5;
+}
+
+/* Dialog options */
+.reflection-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 480px) {
+  .reflection-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+.option-card {
+  background: #fff;
+  border: 2px solid #efe4d3;
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 10px rgba(92, 74, 62, 0.03);
+}
+
+.option-card:hover {
+  border-color: var(--accent-day);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(255, 139, 123, 0.15);
+  background: #fffffb;
+}
+
+.option-card:active {
+  transform: translateY(0);
+}
+
+.option-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 2px;
+  transition: transform 0.3s ease;
+}
+
+.option-card:hover .option-emoji {
+  transform: scale(1.2) rotate(6deg);
+}
+
+.option-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary-day);
+}
+
+/* Diary Notebook Paper styling for fields */
+.diary-fields-container {
+  background: #fffffb;
+  border: 1.5px solid #ebdcb9;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: inset 0 2px 8px rgba(92, 74, 62, 0.02);
+}
+
+.custom-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-input-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-secondary-day);
+}
+
+.cozy-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #efe4d3;
+  background: #fff;
+  color: #5c4a3e;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.cozy-input:focus {
+  border-color: var(--accent-day);
+  box-shadow: 0 0 8px rgba(255, 139, 123, 0.2);
+}
+
+/* Diary Input Handwriting Styles */
+.diary-input-text, .diary-input-textarea {
+  font-family: 'Caveat', cursive;
+  font-size: 1.45rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px dashed #dbcca9;
+  border-radius: 0;
+  padding: 6px 0;
+  color: #5c4a3e;
+  resize: none;
+}
+
+.diary-input-text:focus, .diary-input-textarea:focus {
+  border-color: #ff8b7b;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Modal Footer Navigation */
+.modal-footer {
+  padding: 18px 25px;
+  border-top: 1.5px dashed #efe4d3;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.btn-cozy-secondary {
+  background: #eadecc;
+  color: #8c7361;
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+}
+
+.btn-cozy-secondary:hover {
+  background: #b09078;
+  color: #fff;
+}
+
+.btn-cozy-accent {
+  background: var(--accent-day);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(255, 139, 123, 0.2);
+}
+
+.btn-cozy-accent:hover {
+  background: var(--accent-hover-day);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 139, 123, 0.35);
+}
+
+/* Floating tooltips inside Room */
+.room-tooltip {
+  position: absolute;
+  background: #fff;
+  border: 2px solid #eadecc;
+  color: #5c4a3e;
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 25px rgba(92, 74, 62, 0.1);
+  display: none;
+  pointer-events: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  z-index: 90;
+  animation: popup-bounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.room-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #fff transparent;
+  display: block;
+  width: 0;
+}
+
+.room-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #eadecc transparent;
+  display: block;
+  width: 0;
+  z-index: -1;
+}
+
+/* ANIMATIONS */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes slow-breath {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes popup-bounce {
+  0% { transform: scale(0.7) translateY(10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes heart-fly {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { opacity: 0.95; }
+  100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
+}
+
+/* Sleeping Cat breathe */
+#cat-sleeping {
+  transform-origin: 395px 490px;
+  animation: cat-breathe 4s ease-in-out infinite;
+}
+
+@keyframes cat-breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03, 0.98) translateY(1px); }
+  100% { transform: scale(1); }
+}
+
+.cat-wiggle {
+  animation: cat-wiggle-anim 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes cat-wiggle-anim {
+  10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-1deg); }
+  20%, 80% { transform: translate3d(2px, 0, 0) rotate(2deg); }
+  30%, 50%, 70% { transform: translate3d(-3px, 0, 0) rotate(-3deg); }
+  40%, 60% { transform: translate3d(3px, 0, 0) rotate(3deg); }
+}
+
+/* Twinkling stars */
+.star-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+.star-twinkle-delayed {
+  animation: twinkle 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Window cloud floating */
+.cloud-drift {
+  animation: cloud-drift-anim 40s linear infinite;
+}
+
+@keyframes cloud-drift-anim {
+  0% { transform: translateX(-60px); }
+  100% { transform: translateX(200px); }
+}
+
+/* Sleeping Zzz bubbles */
+.zzz-text {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #8c7361;
+  animation: zzz-fly 4.5s ease-in-out infinite;
+}
+.zzz-1 { animation-delay: 0s; }
+.zzz-2 { animation-delay: 1.5s; }
+.zzz-3 { animation-delay: 3s; }
+
+@keyframes zzz-fly {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  10% { opacity: 0.8; }
+  50% { transform: translate(15px, -20px) scale(0.9); }
+  100% { transform: translate(30px, -45px) scale(1.2); opacity: 0; }
+}
+
+/* Heart particles */
+.heart-particle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.5rem;
+  color: #ff7a7a;
+  z-index: 85;
+  animation: heart-fly 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Twinkling sparkles in night mode */
+.night-particle {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.night-mode .night-particle {
+  opacity: 0.75;
+  animation: float-night-particle 6s ease-in-out infinite alternate;
+}
+
+.night-particle:nth-child(even) {
+  animation-duration: 8s;
+  animation-delay: 1.5s;
+}
+
+@keyframes float-night-particle {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-10px) translateX(8px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-20px) translateX(-4px) scale(1); opacity: 0.3; }
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  padding: 30px 20px 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+footer p {
+  opacity: 0.7;
+}
+
+/* Gentle follow-up card for yesterday's memory */
+.followup-card {
+  background: var(--panel-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 26px var(--shadow);
+  color: var(--text-primary);
+}
+
+.followup-kicker {
+  font-size: 0.78rem;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.followup-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.followup-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.followup-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.followup-option,
+.followup-dismiss {
+  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.86rem;
+}
+
+.followup-option:hover,
+.followup-dismiss:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.followup-dismiss {
+  opacity: 0.78;
+}
+
+.polaroid-followup {
+  margin-top: 8px;
+  padding: 7px 9px;
+  border-radius: 12px;
+  background: rgba(255, 209, 102, 0.18);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+
+/* Memory shelf tokens use SVG transform attributes for placement.
+   Do not apply the general .room-item CSS transform, otherwise they jump to the top-left corner. */
+.shelf-token {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+  cursor: pointer;
+}
+
+.shelf-token.item-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.shelf-token:hover {
+  filter: brightness(1.12) drop-shadow(0px 0px 6px rgba(255, 209, 102, 0.85));
+}
+
+.shelf-token text {
+  pointer-events: none;
+}
