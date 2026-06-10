@@ -2,6 +2,8 @@
 
 🌐 **Live Demo:** https://venuswin.github.io/daynest/
 
+![DayNest preview](./daynest-preview.png)
+
 A cozy life-recording prototype that turns daily memories into small objects in a virtual room.
 
 
